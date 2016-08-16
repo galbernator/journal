@@ -1,0 +1,11 @@
+.row
+  .col-sm-12.p-a-3
+    = form_tag sessions_path do
+      .form-group
+        = label_tag :email
+        = email_field_tag :email, '', class: 'form-control'
+      .form-group
+        = label_tag :password
+        = password_field_tag :password, '', class: 'form-control'
+      .form-group
+        = submit_tag 'Go!', class: 'btn btn-success form-control m-t-2'

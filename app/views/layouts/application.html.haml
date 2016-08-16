@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Journal
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    .container
+      - if current_user
+        .nav.navbar.navbar-light.bg-faded.m-b-1
+          .nav.navbar-nav
+            = link_to :root, class: 'navbar-brand' do
+              Journal
+            = link_to 'Log Out', nil, class: 'nav-item nav-link pull-xs-right'
+      .row
+        .col-sm-12
+          = yield
