@@ -1,0 +1,7 @@
+%h1= Entry.model_name.human.pluralize
+
+.row
+  - @entries.each do |entry|
+    .col-sm-3
+      .card
+        %h4= l(entry.created_at.to_date, format: :long)
