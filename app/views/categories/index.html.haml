@@ -1,0 +1,16 @@
+.row
+  .col-sm-8
+    %h1= Category.model_name.human.pluralize
+  .col-sm-4.text-xs-right
+    = link_to "Add #{Category.model_name.human}", new_category_path, class: 'btn btn-secondary'
+
+.row
+  - @categories.each do |category|
+    .col-sm-4
+      .card.text-xs-center
+        .card-header
+          %h4= category.name
+        .list-group
+          - count = category.questions.count
+          = count
+          = (count.zero? || count > 1) ? 'Questons' : 'Question'

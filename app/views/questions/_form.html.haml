@@ -1,0 +1,9 @@
+= form_for @question do |f|
+  .form-group
+    = f.label :text
+    = f.text_field :text, class: 'form-control'
+  .form-group
+    = f.label :category_id
+    = f.select :category_id, options_for_select(Category.all.map{ |c| [c.name, c.id] }, @question.category_id), class: 'form-control'
+  .form-group
+    = f.submit class: 'btn btn-success'
