@@ -12,7 +12,7 @@ class EntriesController < ApplicationController
 
   def destroy
     @entry.destroy
-    redirect_to :entries, notice: 'Entry successfully deleted.'
+    redirect_to :user_entries, notice: 'Entry successfully deleted.'
   end
 
   private
