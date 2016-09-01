@@ -14,11 +14,11 @@
           = link_to :root, class: 'navbar-brand' do
             Journal
           %ul.nav.navbar-nav
-            %li.nav-item
+            = nav_li :categories do
               = link_to Category.model_name.human.pluralize, :categories, class: 'nav-link'
-            %li.nav-item
+            = nav_li :questions do
               = link_to Question.model_name.human.pluralize, :questions, class: 'nav-link'
-            %li.nav-item.pull-xs-right
+            = nav_li nil, class: 'pull-xs-right' do
               = link_to 'Log Out', logout_path, method: :delete, class: 'nav-item nav-link'
 
       .row
