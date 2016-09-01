@@ -1,0 +1,17 @@
+.row
+  .col-sm-8
+    %h1= Question.model_name.human.pluralize
+  .col-sm-4.text-xs-right
+    = link_to "Add #{Question.model_name.human}", new_question_path, class: 'btn btn-secondary'
+
+- if @questions.any?
+  .row
+    - @questions.group_by(&:category).each do |category, category_questions|
+      .col-sm-6
+        .card
+          .card-header
+            %h4= category.name
+          .list-group
+            - category_questions.each do |question|
+              .list-group-item
+                = question.text
