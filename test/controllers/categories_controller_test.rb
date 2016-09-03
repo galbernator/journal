@@ -27,6 +27,11 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
+    test 'show' do
+      get "/categories/#{@category.id}"
+      assert_response :success
+    end
+
     test 'edit' do
       get "/categories/#{@category.id}/edit"
       assert_response :success
@@ -57,5 +62,5 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
         { name: 'John Jacob Jingleheimer Schmidt' }
       end
     end
-    
+
 end

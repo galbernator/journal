@@ -1,0 +1,6 @@
+%h1 #{@category.name.titleize} Questions
+
+.list-group.m-t-1
+  - @category.questions.each do |question|
+    .list-group-item
+      = question.text
