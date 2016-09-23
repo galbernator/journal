@@ -27,6 +27,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'edit' do
+    get "/users/#{@user.id}/edit"
+    assert_response :success
+  end
+
+  test 'update invalid' do
+    patch "/users/#{@user.id}", params: { user: params(:invalid) }
+    assert_response :success
+  end
+
+  test 'update valid' do
+    patch "/users/#{@user.id}", params: { user: params }
+    assert_response :redirect
+  end
+
   private
 
   def params(kind = :valid)

@@ -19,6 +19,18 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+    @category_questions_array = Question.all.group_by(&:category).map { |key, value| [key, value] }
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
   private
 
   def user_params
@@ -27,7 +39,8 @@ class UsersController < ApplicationController
         :last_name,
         :email,
         :password,
-        :password_confirmation
+        :password_confirmation,
+        question_ids: []
       ])
   end
 
