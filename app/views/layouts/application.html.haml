@@ -20,6 +20,8 @@
               = link_to Question.model_name.human.pluralize, :questions, class: 'nav-link'
             = nav_li nil, class: 'pull-xs-right' do
               = link_to 'Log Out', logout_path, method: :delete, class: 'nav-item nav-link'
+            = nav_li :users, class: 'pull-xs-right' do
+              = link_to current_user.name, [:edit, current_user], class: 'nav-item nav-link'
 
       .row
         .col-sm-12

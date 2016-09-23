@@ -10,11 +10,25 @@
       .form-group
         = f.label :email
         = f.text_field :email, class: 'form-control'
+      - if @user.new_record?
+        .form-group
+          = f.label :password
+          = f.password_field :password, class: 'form-control'
+        .form-group
+          = f.label :password_confirmation, 'Re-Type Password'
+          = f.password_field :password_confirmation, class: 'form-control'
+      - else
+        - if @category_questions_array.present?
+          %h3.m-y-2 Daily Questions
+          - @category_questions_array.in_groups_of(2).each do |category_tuple|
+            .row.m-l-1
+              - category_tuple.each do |category, category_questions|
+                .col-sm-6
+                  %h5.question-category-title= category.name
+                  = f.collection_check_boxes :question_ids, category_questions, :id, :text do |box|
+                    .form-check
+                      = box.check_box class: 'form-check-input'
+                      = box.label class: 'form-check-label'
       .form-group
-        = f.label :password
-        = f.password_field :password, class: 'form-control'
-      .form-group
-        = f.label :password_confirmation, 'Re-Type Password'
-        = f.password_field :password_confirmation, class: 'form-control'
-      .form-group
-        = f.submit 'Sign up!', class: 'btn btn-success form-control m-t-2'
+        - button_text = @user.persisted? ? 'Update' : 'Sign Up!'
+        = f.submit button_text, class: 'btn btn-success form-control m-t-2'
